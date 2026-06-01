@@ -2,11 +2,13 @@ const axios = require('axios');
 
 const fetchProductImage = async (productName) => {
   try {
-    const url = `https://picsum.photos/300?random=${Date.now()}`;
+    const randomId = Math.floor(Math.random() * 1000) + 1;
+    const url = `https://picsum.photos/id/${randomId}/400/400`;
     await axios.head(url);
     return url;
   } catch {
-    return 'https://picsum.photos/300';
+    const fallbackId = Math.floor(Math.random() * 500) + 1;
+    return `https://picsum.photos/id/${fallbackId}/400/400`;
   }
 };
 
